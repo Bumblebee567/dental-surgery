@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img class="card-img-top" src="~/Images/card-images/visit.jpg"/>
+                        <img class="card-img-top" src="~/Images/card-images/visit.jpg" />
                         <div class="card-body">
                             <h5 class="card-title">Zapisz się na wizytę</h5>
                         </div>
@@ -35,17 +35,25 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img class="card-img-top" src="~/Images/card-images/about.jpg"/>
+                        <img class="card-img-top" src="~/Images/card-images/about.jpg" />
                         <div class="card-body">
-                            <h5 class="card-title">O nas</h5>
+                            <h5 class="card-title"> @Html.ActionLink("O nas", "About", "Home")</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img class="card-img-top" src="~/Images/card-images/contact.jpg"/>
+                        <img class="card-img-top" src="~/Images/card-images/contact.jpg" />
                         <div class="card-body">
-                            <h5 class="card-title">Kontakt</h5>
+                            <h5 class="card-title">@Html.ActionLink("Kontakt", "Contact", "Home")</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Images/card-images/schedule.jpg" />
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.ActionLink("Kontakt", "Contact", "Home")</h5>
                         </div>
                     </div>
                 </div>
