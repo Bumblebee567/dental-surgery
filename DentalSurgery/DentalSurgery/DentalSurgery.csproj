@@ -200,6 +200,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\card-images\about.jpg" />
+    <Content Include="Images\card-images\contact.jpg" />
+    <Content Include="Images\card-images\history.jpg" />
+    <Content Include="Images\card-images\schedule.jpg" />
+    <Content Include="Images\card-images\visit.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

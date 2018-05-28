@@ -15,7 +15,31 @@ body,html{
 .navbar-default{
     background-color: silver;
 }
+.header img{
+    float: left;
+    height: 55px;
+    width: 55px;
+}
 
+.header h1 {
+    font-family: 'GE Inspira Book';
+    font-size: 50px;
+    color: azure;
+    padding-bottom: 50px;
+    margin-left: 80px;
+}
+
+h5{
+    font-family: 'GE Inspira Pitch';
+    font-size: 24px;
+    color: blue;
+    text-align: center;
+}
+
+.card card-img-top{
+    height: 400px;
+    width: 266px;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
