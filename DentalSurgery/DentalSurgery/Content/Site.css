@@ -1,10 +1,9 @@
 ﻿body {
-    padding-bottom: 20px;
-    background: linear-gradient(mediumslateblue, white);
+    background: linear-gradient(dodgerblue, white);
 }
 
 body,html{
-    height: 100%;
+    min-height: 100%;
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -36,6 +35,31 @@ h5{
     text-align: center;
 }
 
+.jumbotron {
+    background-size: cover;
+}
+
+.jumbotron h1{
+    color: rebeccapurple;
+    font-family: Tahoma;
+    font-size: 50px;
+    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+}
+
+.jumbotron p{
+    color: rebeccapurple;
+    font-family: Tahoma;
+    font-size: 26px;
+    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+}
+
+.jumbotron-with-url a{
+    text-decoration: none;
+}
+
+.jumbotron:hover{
+    opacity: 0.7;
+}
 .card card-img-top{
     height: 400px;
     width: 266px;

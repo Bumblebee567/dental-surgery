@@ -25,7 +25,42 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-xl-12">
+                    <div class="jumbotron-with-url">
+                        <div class="jumbotron" style="background-image: url('../../Images/card-images/visit.jpg');">
+                            <h1>Zapis na wizytę</h1>
+                            <p>Dokonaj zapisuj na wizytę w naszym gabinecie</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="jumbotron-with-url">
+                        <div class="jumbotron" style="background-image: url('../../Images/card-images/about.jpg');">
+                            <h1>O nas</h1>
+                            <p>Zapoznaj się z naszym personelem i historią</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="jumbotron-with-url">
+                        <div class="jumbotron" style="background-image: url('../../Images/card-images/schedule.jpg');">
+                            <h1>Opinie pacjentów</h1>
+                            <p>Zapoznaj się z opiniami pacjentów na nasz temat</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="jumbotron-with-url">
+                        <a href="@Url.Action("About", "Home")">
+                            <div class="jumbotron" style="background-image: url('../../Images/card-images/contact.jpg');">
+                                <h1>Kontakt</h1>
+                                <p>Skontakuj się z nami używając formularza</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-md-4">
                     <div class="card">
                         <img class="card-img-top" src="~/Images/card-images/visit.jpg" />
                         <div class="card-body">
@@ -56,16 +91,16 @@
                             <h5 class="card-title">@Html.ActionLink("Kontakt", "Contact", "Home")</h5>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>*@
         </div>
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        <div class="container body-content">
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <div class="container body-content">
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
 </body>
 </html>
