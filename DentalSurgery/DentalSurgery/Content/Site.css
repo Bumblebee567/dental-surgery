@@ -11,8 +11,8 @@ body,html{
     padding-right: 15px;
 }
 
-.navbar-default{
-    background-color: silver;
+.navbar-default {
+    background-color: #777;
 }
 .header img{
     float: left;
@@ -28,7 +28,31 @@ body,html{
     margin-left: 80px;
 }
 
-h5{
+.header-navbar img {
+    float: left;
+    height: 30px;
+    width: 30px;
+}
+
+.header-navbar h4 {
+    font-family: 'GE Inspira Book';
+    font-size: 28px;
+    color: azure;
+    margin-left: 40px;
+    margin-right: 50px;
+}
+
+.nav-item {
+    font-family: 'GE Inspira Book';
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.nav-item nav-link{
+    color: white;
+}
+
+h5 {
     font-family: 'GE Inspira Pitch';
     font-size: 28px;
     color: blue;
