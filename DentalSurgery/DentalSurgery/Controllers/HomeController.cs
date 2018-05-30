@@ -64,24 +64,33 @@ namespace DentalSurgery.Controllers
             }
             return View(model);
         }
-
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                _userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-                var authManager = HttpContext.GetOwinContext().Authentication;
+            _userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            var authManager = HttpContext.GetOwinContext().Authentication;
 
-                AppUser user = _userManager.FindByEmail(model.Email);
-                if(user != null)
-                {
-                    var ident = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    authManager.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
-                    return RedirectToAction("Index", "Home");
-                }
+            AppUser user = _userManager.FindByEmail(model.Email);
+            if (user != null)
+            {
+                var ident = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                authManager.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
+        [Authorize]
+        public ActionResult Logout()
+        {
+            var authManager = HttpContext.GetOwinContext().Authentication;
+            authManager.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
         [Authorize]
         public ActionResult WriteOpinion()
         {
