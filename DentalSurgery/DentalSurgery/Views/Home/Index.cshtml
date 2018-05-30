@@ -69,9 +69,12 @@
         <footer>
             <center>
                 <p>&copy; @DateTime.Now.Year - Gabinet dentystyczny</p>
-                <p>
-                    <a href="@Url.Action("Login", "Home")">Logowanie</a>
-                </p>
+                @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == false)
+                {
+                    <p>
+                        <a href="@Url.Action("Login", "Home")">Logowanie</a>
+                    </p>
+                }
                 <br />
             </center>
         </footer>

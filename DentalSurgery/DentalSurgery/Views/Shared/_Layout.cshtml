@@ -29,11 +29,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("About", "Home")">O nas</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="padding-right: 60px;">
                     <a class="nav-link" href="@Url.Action("Contact", "Home")">Kontakt</a>
                 </li>
                 @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true)
                 {
+                    <li class="nav-item">
+                        <label class="label-user-name">Witaj, @User.Identity.Name</label>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Logout", "Home")">Historia wizyt</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Logout", "Home")">Wyloguj</a>
                     </li>
@@ -48,10 +54,12 @@
         <footer>
             <center>
                 <p>&copy; @DateTime.Now.Year - Gabinet dentystyczny</p>
-                <p>
-                    <a href="@Url.Action("Login", "Home")">Logowanie</a>
-                </p>
-                <br />
+                @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == false)
+                {
+                    <p>
+                        <a href="@Url.Action("Login", "Home")">Logowanie</a>
+                    </p>
+                }
             </center>
         </footer>
     </div>
