@@ -82,5 +82,10 @@ namespace DentalSurgery.Controllers
             }
             return View();
         }
+        [Authorize]
+        public ActionResult WriteOpinion()
+        {
+            return View();
+        }
     }
 }
