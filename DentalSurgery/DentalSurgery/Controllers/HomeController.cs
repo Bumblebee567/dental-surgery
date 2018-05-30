@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DentalSurgery.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,6 +25,14 @@ namespace DentalSurgery.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult Register(RegisterLoginViewModel model)
+        {
+            return View();
+        }
+        public ActionResult Login(RegisterLoginViewModel model)
+        {
             return View();
         }
     }

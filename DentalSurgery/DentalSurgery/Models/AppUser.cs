@@ -10,5 +10,6 @@ namespace DentalSurgery.Models
     {
         public Guid UserId { get; set; } = Guid.NewGuid();
         public virtual ICollection<Visit> Visits { get; set; }
+        public virtual ICollection<Opinion> Opinions { get; set; }
     }
 }

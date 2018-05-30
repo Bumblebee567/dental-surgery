@@ -13,6 +13,7 @@ namespace DentalSurgery.BLL
     {
         public DbSet<Visit> Visits { get; set; }
         public DbSet<Surgery> Surgeries { get; set; }
+        public DbSet<Opinion> Opinions { get; set; }
 
         public DentalBaseContext() : base("DentalBaseConnectionString")
         {
@@ -27,6 +28,11 @@ namespace DentalSurgery.BLL
             modelBuilder.Entity<IdentityUserLogin>()
                 .HasKey(k => new { k.LoginProvider, k.ProviderKey, k.UserId })
                 .ToTable("UserLogins");
+
+            modelBuilder.Entity<Opinion>()
+                .HasKey(k => new { k.OpinionId })
+                .ToTable("Opinions");
+
         }
     }
 }

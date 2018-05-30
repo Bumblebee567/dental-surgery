@@ -186,12 +186,18 @@
     <Compile Include="Migrations\201805281932385_Initial.Designer.cs">
       <DependentUpon>201805281932385_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805300938375_OpinionsAdded.cs" />
+    <Compile Include="Migrations\201805300938375_OpinionsAdded.Designer.cs">
+      <DependentUpon>201805300938375_OpinionsAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\Opinion.cs" />
     <Compile Include="Models\Surgery.cs" />
     <Compile Include="Models\Visit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\RegisterLoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -238,7 +244,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -256,6 +261,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805281932385_Initial.resx">
       <DependentUpon>201805281932385_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300938375_OpinionsAdded.resx">
+      <DependentUpon>201805300938375_OpinionsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
