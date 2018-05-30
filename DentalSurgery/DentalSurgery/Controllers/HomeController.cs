@@ -4,6 +4,8 @@ using DentalSurgery.ViewModels;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -40,7 +42,7 @@ namespace DentalSurgery.Controllers
 
             return View();
         }
-        public async Task<ActionResult> Register(RegisterLoginViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -50,10 +52,9 @@ namespace DentalSurgery.Controllers
                     Email = model.Email,
                     PasswordHash = model.Password
                 };
-                if(_userManager == null)
+                if (_userManager == null)
                 {
-                    var store = new UserStore<AppUser>(_context);
-                    _userManager = new AppUserManager(store);
+                    _userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
                 }
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -63,8 +64,22 @@ namespace DentalSurgery.Controllers
             }
             return View(model);
         }
-        public ActionResult Login(RegisterLoginViewModel model)
+
+        public ActionResult Login(LoginViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                _userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                var authManager = HttpContext.GetOwinContext().Authentication;
+
+                AppUser user = _userManager.FindByEmail(model.Email);
+                if(user != null)
+                {
+                    var ident = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    authManager.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
             return View();
         }
     }

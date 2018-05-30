@@ -6,7 +6,7 @@ using System.Web;
 
 namespace DentalSurgery.ViewModels
 {
-    public class RegisterLoginViewModel
+    public class RegisterViewModel
     {
         [Required]
         [EmailAddress]
