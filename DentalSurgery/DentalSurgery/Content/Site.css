@@ -20,6 +20,10 @@ body,html{
     width: 55px;
 }
 
+.register-question label {
+    padding-left: 15px;
+}
+
 .login-register-header h2 {
     padding-top: 18px;
 }
