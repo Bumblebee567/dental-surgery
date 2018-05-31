@@ -94,6 +94,10 @@ namespace DentalSurgery.Controllers
         [Authorize]
         public ActionResult WriteOpinion()
         {
+            return PartialView("WriteOpinion");
+        }
+        public ActionResult Opinions()
+        {
             return View();
         }
     }
