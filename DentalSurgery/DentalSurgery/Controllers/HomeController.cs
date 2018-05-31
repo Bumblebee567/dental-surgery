@@ -90,8 +90,6 @@ namespace DentalSurgery.Controllers
             authManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
-        [Authorize]
         public ActionResult WriteOpinion()
         {
             return PartialView("WriteOpinion");

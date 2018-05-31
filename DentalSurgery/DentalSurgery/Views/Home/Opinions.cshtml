@@ -7,6 +7,13 @@
     <h2>Opinie pacjentów</h2>
 </div>
 <hr />
+@if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true)
+{
+    <div class="my-awesome">
+        @Html.Action("WriteOpinion")
+    </div>
+}
+
 <div class="container">
     @*@foreach (var opinion in Model)
         {*@
