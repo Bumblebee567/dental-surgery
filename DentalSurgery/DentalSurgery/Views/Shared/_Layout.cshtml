@@ -44,6 +44,12 @@
                         <a class="nav-link" href="@Url.Action("Logout", "Home")">Wyloguj</a>
                     </li>
                 }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Login", "Home")">Zaloguj się</a>
+                    </li>
+                }
             </ul>
         </div>
     </nav>
@@ -54,7 +60,7 @@
         <footer>
             <center>
                 <p>&copy; @DateTime.Now.Year - Gabinet dentystyczny</p>
-                @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == false)
+                @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == false && Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath)).ToString() != "_Layout")
                 {
                     <p>
                         <a href="@Url.Action("Login", "Home")">Logowanie</a>

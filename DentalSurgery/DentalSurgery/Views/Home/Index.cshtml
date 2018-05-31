@@ -27,26 +27,32 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="jumbotron-with-url">
-                        <div class="jumbotron" style="background-image: url('../../Images/card-images/visit.jpg');">
-                            <h1>Zapis na wizytę</h1>
-                            <p>Dokonaj zapisuj na wizytę w naszym gabinecie</p>
-                        </div>
+                        <a href="@Url.Action("Appointment", "Home")">
+                            <div class="jumbotron" style="background-image: url('../../Images/card-images/visit.jpg');">
+                                <h1>Zapis na wizytę</h1>
+                                <p>Dokonaj zapisuj na wizytę w naszym gabinecie</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-xl-12">
                     <div class="jumbotron-with-url">
-                        <div class="jumbotron" style="background-image: url('../../Images/card-images/about.jpg');">
-                            <h1>O nas</h1>
-                            <p>Zapoznaj się z naszym personelem i historią</p>
-                        </div>
+                        <a href="@Url.Action("About", "Home")">
+                            <div class="jumbotron" style="background-image: url('../../Images/card-images/about.jpg');">
+                                <h1>O nas</h1>
+                                <p>Zapoznaj się z naszym personelem i historią</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-xl-12">
                     <div class="jumbotron-with-url">
-                        <div class="jumbotron" style="background-image: url('../../Images/card-images/schedule.jpg');">
-                            <h1>Opinie pacjentów</h1>
-                            <p>Zapoznaj się z opiniami pacjentów na nasz temat</p>
-                        </div>
+                        <a href="@Url.Action("Opinions", "Home")">
+                            <div class="jumbotron" style="background-image: url('../../Images/card-images/schedule.jpg');">
+                                <h1>Opinie pacjentów</h1>
+                                <p>Zapoznaj się z opiniami pacjentów na nasz temat</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-xl-12">
@@ -59,6 +65,19 @@
                         </a>
                     </div>
                 </div>
+                @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true && User.IsInRole("Admin") == false)
+                {
+                    <div class="col-xl-12">
+                        <div class="jumbotron-with-url">
+                            <a href="@Url.Action("VisitHistory", "Home")">
+                                <div class="jumbotron" style="background-image: url('../../Images/card-images/history.jpg');">
+                                    <h1>Historia wizyt</h1>
+                                    <p>Przeglądaj historię swoich wizyt w naszym gabinecie</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
