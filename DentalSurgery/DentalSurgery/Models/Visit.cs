@@ -9,7 +9,7 @@ namespace DentalSurgery.Models
     {
         public Guid VisitId { get; set; } = Guid.NewGuid();
         public DateTime Date { get; set; }
-        public AppUser Patient { get; set; }
+        public virtual AppUser Patient { get; set; }
         public virtual ICollection<Surgery> Surgeries { get; set; }
     }
 }

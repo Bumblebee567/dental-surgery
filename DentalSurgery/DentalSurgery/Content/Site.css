@@ -155,6 +155,50 @@ footer{
     width: 266px;
 }
 
+.about-text-column h4 {
+    font-size: 20px;
+    text-align: left;
+    color: black;
+    padding-left: 30px;
+}
+
+.about-text-column p{
+    font-size: 16px;
+    padding-left: 30px;
+    padding-right: 15px;
+}
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.left {
+    width: 65%;
+}
+
+.right p{
+    font-size: 18px;
+    padding-left: 30px;
+    margin-right: 15px;
+    margin-bottom: 0px;
+}
+
+.right number-label p{
+    padding-top: 0px;
+}
+
+.right {
+    width: 35%;
+    float: right;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */

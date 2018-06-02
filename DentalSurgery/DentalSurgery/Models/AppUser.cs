@@ -9,6 +9,8 @@ namespace DentalSurgery.Models
     public class AppUser : IdentityUser
     {
         public Guid UserId { get; set; } = Guid.NewGuid();
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public virtual ICollection<Visit> Visits { get; set; }
         public virtual ICollection<Opinion> Opinions { get; set; }
     }

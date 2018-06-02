@@ -195,6 +195,10 @@
     <Compile Include="Migrations\201806021304035_ToothInSurgeryAdded.Designer.cs">
       <DependentUpon>201806021304035_ToothInSurgeryAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806021939153_FirstNameLastNameAddedToAppUser.cs" />
+    <Compile Include="Migrations\201806021939153_FirstNameLastNameAddedToAppUser.Designer.cs">
+      <DependentUpon>201806021939153_FirstNameLastNameAddedToAppUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\AppUser.cs" />
@@ -278,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806021304035_ToothInSurgeryAdded.resx">
       <DependentUpon>201806021304035_ToothInSurgeryAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806021939153_FirstNameLastNameAddedToAppUser.resx">
+      <DependentUpon>201806021939153_FirstNameLastNameAddedToAppUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
