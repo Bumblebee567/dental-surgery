@@ -119,5 +119,11 @@ namespace DentalSurgery.Controllers
             _opinions = _opinionManager.GetAllOpinions();
             return View(_opinions);
         }
+
+        [HttpGet]
+        public ActionResult MakeAppointment()
+        {
+            return View();
+        }
     }
 }
