@@ -4,15 +4,19 @@
     ViewBag.Title = "WriteOpinion";
 }
 
-<div class="form-group">
-    <div class="col-md-10">
-        @Html.TextAreaFor(model => model.Content, new { @class = "form-control", id = "comment", rows = "5", cols = "100", style = "max-width: 100%;", placeholder = "Wpisz swoją opinię..."})
-        @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+@using (Html.BeginForm("WriteOpinion", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Content, new { @class = "form-control", id = "comment", rows = "5", cols = "100", style = "max-width: 100%;", placeholder = "Wpisz swoją opinię..." })
+            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+        </div>
     </div>
-</div>
 
-<div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-        <input type="submit" value="Dodaj opinię" class="btn btn-default" style="background-color: dodgerblue; color: aliceblue"/>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Dodaj opinię" class="btn btn-default" style="background-color: dodgerblue; color: aliceblue" />
+        </div>
     </div>
-</div>
+}

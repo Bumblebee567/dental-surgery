@@ -15,18 +15,21 @@
 }
 
 <div class="container">
-    @*@foreach (var opinion in Model)
-        {*@
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="jumbotron jumbotron-opinion">
-                <h5>Autor opinii</h5>
-                <h6>Data opinii</h6>
-                <label>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam posuere arcu eu imperdiet imperdiet. Proin lobortis dignissim ultrices. Cras interdum nunc a nisl luctus pretium. Fusce fermentum, sem eget lacinia convallis, massa est consequat est, in suscipit magna eros eget turpis. Vestibulum pharetra elit quis neque hendrerit dapibus. Curabitur mollis est in urna ornare laoreet. Fusce est lorem, porttitor sed turpis a, tempor efficitur eros. Mauris hendrerit rhoncus augue id posuere. Aenean vestibulum cursus nunc, nec mollis massa malesuada eget.
-                </label>
+    @if (Model != null)
+    {
+        foreach (var opinion in Model)
+        {
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="jumbotron jumbotron-opinion">
+                        <h5>@opinion.Author</h5>
+                        <h6>@opinion.Date.ToShortDateString()</h6>
+                        <label>
+                            @opinion.Content
+                        </label>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    @*}*@
+        }
+    }
 </div>

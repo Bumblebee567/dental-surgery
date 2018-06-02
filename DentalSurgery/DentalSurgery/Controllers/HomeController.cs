@@ -20,6 +20,7 @@ namespace DentalSurgery.Controllers
     {
         private UserManager<AppUser> _userManager;
         private DentalBaseContext _context;
+        private IEnumerable<Opinion> _opinions;
         public HomeController()
         {
             _context = new DentalBaseContext();
@@ -90,13 +91,23 @@ namespace DentalSurgery.Controllers
             authManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
+        [HttpGet]
         public ActionResult WriteOpinion()
         {
             return PartialView("WriteOpinion");
         }
+        [HttpPost]
+        public ActionResult WriteOpinion(OpinionViewModel opinion)
+        {
+            OpinionManager.AddOpinion(opinion);
+            return RedirectToAction("Opinions", "Home");
+
+        }
+        [HttpGet]
         public ActionResult Opinions()
         {
-            return View();
+            _opinions = OpinionManager.GetAllOpinions();
+            return View(_opinions);
         }
     }
 }

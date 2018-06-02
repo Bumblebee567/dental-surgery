@@ -1,4 +1,5 @@
-﻿using DentalSurgery.ViewModels;
+﻿using DentalSurgery.Models;
+using DentalSurgery.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,9 @@ namespace DentalSurgery.BLL
     public class OpinionManager
     {
         private static DentalBaseContext _context;
-        public OpinionManager()
-        {
-            _context = new DentalBaseContext();
-        }
         public static void AddOpinion(OpinionViewModel model)
         {
+            _context = new DentalBaseContext();
             _context.Opinions.Add(new Models.Opinion
             {
                 Date = model.PubDate,
@@ -26,6 +24,11 @@ namespace DentalSurgery.BLL
         public static void DeleteOpinion(OpinionViewModel model)
         {
 
+        }
+        public static IQueryable<Opinion> GetAllOpinions()
+        {
+            _context = new DentalBaseContext();
+            return _context.Set<Opinion>();
         }
     }
 }
