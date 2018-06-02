@@ -8,8 +8,8 @@ namespace DentalSurgery.Models
     public class Opinion
     {
         public Guid OpinionId { get; set; } = Guid.NewGuid();
-        public AppUser Author { get; set; }
         public string Content { get; set; }
         public DateTime Date { get; set; }
+        public virtual AppUser Author { get; set; }
     }
 }

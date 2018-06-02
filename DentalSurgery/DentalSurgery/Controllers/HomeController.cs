@@ -20,10 +20,12 @@ namespace DentalSurgery.Controllers
     {
         private UserManager<AppUser> _userManager;
         private DentalBaseContext _context;
+        private OpinionManager _opinionManager;
         private IEnumerable<Opinion> _opinions;
         public HomeController()
         {
             _context = new DentalBaseContext();
+            _opinionManager = new OpinionManager(_context);
         }
         public ActionResult Index()
         {
@@ -43,6 +45,11 @@ namespace DentalSurgery.Controllers
 
             return View();
         }
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -99,14 +106,17 @@ namespace DentalSurgery.Controllers
         [HttpPost]
         public ActionResult WriteOpinion(OpinionViewModel opinion)
         {
-            OpinionManager.AddOpinion(opinion);
+            var userId = User.Identity.GetUserId();
+            var author = _context.Users.Where(x => x.Id == userId).FirstOrDefault();
+            opinion.Author = author;
+            _opinionManager.AddOpinion(opinion);
             return RedirectToAction("Opinions", "Home");
 
         }
         [HttpGet]
         public ActionResult Opinions()
         {
-            _opinions = OpinionManager.GetAllOpinions();
+            _opinions = _opinionManager.GetAllOpinions();
             return View(_opinions);
         }
     }

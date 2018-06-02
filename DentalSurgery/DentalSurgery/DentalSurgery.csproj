@@ -191,6 +191,10 @@
     <Compile Include="Migrations\201805300938375_OpinionsAdded.Designer.cs">
       <DependentUpon>201805300938375_OpinionsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806021304035_ToothInSurgeryAdded.cs" />
+    <Compile Include="Migrations\201806021304035_ToothInSurgeryAdded.Designer.cs">
+      <DependentUpon>201806021304035_ToothInSurgeryAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\AppUser.cs" />
@@ -271,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805300938375_OpinionsAdded.resx">
       <DependentUpon>201805300938375_OpinionsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806021304035_ToothInSurgeryAdded.resx">
+      <DependentUpon>201806021304035_ToothInSurgeryAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

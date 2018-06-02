@@ -10,6 +10,7 @@ namespace DentalSurgery.Models
         public Guid SurgeryId { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
+        public string Tooth { get; set; }
         public virtual ICollection<Visit> Visits { get; set; }
     }
 }

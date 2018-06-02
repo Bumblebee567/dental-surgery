@@ -10,7 +10,7 @@ namespace DentalSurgery.ViewModels
     public class OpinionViewModel
     {
         public DateTime PubDate { get; set; } = DateTime.Now;
-        public AppUser Author { get; set; } = HttpContext.Current.User as AppUser;
+        public AppUser Author { get; set; }
         public string Content { get; set; }
     }
 }

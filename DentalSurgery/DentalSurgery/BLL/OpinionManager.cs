@@ -10,25 +10,31 @@ namespace DentalSurgery.BLL
     public class OpinionManager
     {
         private static DentalBaseContext _context;
-        public static void AddOpinion(OpinionViewModel model)
+        public OpinionManager()
         {
-            _context = new DentalBaseContext();
-            _context.Opinions.Add(new Models.Opinion
+        }
+        public OpinionManager(DentalBaseContext context)
+        {
+            _context = context;
+        }
+        public void AddOpinion(OpinionViewModel model)
+        {
+            var opinion = new Opinion
             {
                 Date = model.PubDate,
                 Content = model.Content,
                 Author = model.Author
-            });
+            };
+            _context.Opinions.Add(opinion);
             _context.SaveChanges();
         }
         public static void DeleteOpinion(OpinionViewModel model)
         {
 
         }
-        public static IQueryable<Opinion> GetAllOpinions()
+        public List<Opinion> GetAllOpinions()
         {
-            _context = new DentalBaseContext();
-            return _context.Set<Opinion>();
+            return _context.Opinions.ToList();
         }
     }
 }
