@@ -125,5 +125,10 @@ namespace DentalSurgery.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult MakeAppointment(MakeAppointmentViewModel model)
+        {
+            return null;
+        }
     }
 }
