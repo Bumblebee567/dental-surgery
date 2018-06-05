@@ -1,5 +1,6 @@
 ﻿using DentalSurgery.BLL;
 using DentalSurgery.Models;
+using DentalSurgery.Utiles;
 using DentalSurgery.ViewModels;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
@@ -123,7 +124,14 @@ namespace DentalSurgery.Controllers
         [HttpGet]
         public ActionResult MakeAppointment()
         {
-            return View();
+            var model = new MakeAppointmentViewModel();
+            model.Surgeries.ToList().AddRange(_context.Set<Surgery>());
+            model.Teeth = TeethListGenerator.GenerateListOfTeeth();
+            foreach (var item in model.Surgeries)
+            {
+                model.SurgeryChoice.Add(new SelectListItem { Text = item.Name });
+            }
+            return View(model);
         }
         [HttpPost]
         public ActionResult MakeAppointment(MakeAppointmentViewModel model)
