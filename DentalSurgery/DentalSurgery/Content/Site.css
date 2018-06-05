@@ -199,6 +199,22 @@ footer{
     width: 35%;
     float: right;
 }
+
+.left-input{
+    float: left;
+}
+
+.right-input{
+    float: right;
+}
+.appointment-group{
+    margin-left: 15px;
+}
+.form-horizontal h6 {
+    font-size: 18px;
+    margin-left: 15px;
+    padding-bottom: 5px;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */

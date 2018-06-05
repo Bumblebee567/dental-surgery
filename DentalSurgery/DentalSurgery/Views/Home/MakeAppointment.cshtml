@@ -4,80 +4,79 @@
     ViewBag.Title = "MakeAppointment";
 }
 
-<h2>MakeAppointment</h2>
+<div class="opinion-header">
+    <h2>Zapis na wizytę</h2>
+</div>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>MakeAppointmentViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "input form-control", type = "text", style = "width: 250px;", placeHolder = "Data wizyty", onfocus = "(this.type='date')", onblur = "(this.type='text')", id = "date" } })
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
+        <h6>Wizyta może zawierać maksymalnie 3 zabiegi</h6>
+        <div class="appointment-group">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FirstSurgeryName, new { htmlAttributes = new { @class = "form-control", style = "width: 250px;", placeHolder = "Pierwszy zabieg" } })
+                        @Html.ValidationMessageFor(model => model.FirstSurgeryName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstSurgeryName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstSurgeryName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstSurgeryName, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FirstSurgeryTooth, new { htmlAttributes = new { @class = "form-control", style = "width: 250px;" } })
+                        @Html.ValidationMessageFor(model => model.FirstSurgeryTooth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SecondSurgeryName, new { htmlAttributes = new { @class = "form-control left-input", style = "width: 250px;", placeHolder = "Drugi zabieg" } })
+                        @Html.ValidationMessageFor(model => model.SecondSurgeryName, "", new { @class = "text-danger left-input" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SecondSurgeryTooth, new { htmlAttributes = new { @class = "form-control", style = "width: 250px;" } })
+                        @Html.ValidationMessageFor(model => model.SecondSurgeryTooth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ThirdSurgeryName, new { htmlAttributes = new { @class = "form-control left-input", style = "width: 250px;", placeHolder = "Trzeci zabieg" } })
+                        @Html.ValidationMessageFor(model => model.ThirdSurgeryName, "", new { @class = "text-danger left-input" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ThirdSurgeryTooth, new { htmlAttributes = new { @class = "form-control", placeHolder = "Ząb do trzeciego zabiegu", style = "width: 250px;" } })
+                        @Html.ValidationMessageFor(model => model.ThirdSurgeryTooth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstSurgeryTooth, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstSurgeryTooth, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstSurgeryTooth, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SecondSurgeryName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SecondSurgeryName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SecondSurgeryName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SecondSurgeryTooth, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SecondSurgeryTooth, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SecondSurgeryTooth, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ThirdSurgeryName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ThirdSurgeryName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ThirdSurgeryName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ThirdSurgeryTooth, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ThirdSurgeryTooth, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ThirdSurgeryTooth, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Zapisz się" class="btn btn-default" style="background-color: dodgerblue; color: aliceblue" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
