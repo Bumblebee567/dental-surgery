@@ -203,11 +203,16 @@
     <Compile Include="Migrations\201806041007042_ModsInSurgery.Designer.cs">
       <DependentUpon>201806041007042_ModsInSurgery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806061040120_ToothTableAdded.cs" />
+    <Compile Include="Migrations\201806061040120_ToothTableAdded.Designer.cs">
+      <DependentUpon>201806061040120_ToothTableAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Opinion.cs" />
     <Compile Include="Models\Surgery.cs" />
+    <Compile Include="Models\Tooth.cs" />
     <Compile Include="Models\Visit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailSender.cs" />
@@ -296,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806041007042_ModsInSurgery.resx">
       <DependentUpon>201806041007042_ModsInSurgery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806061040120_ToothTableAdded.resx">
+      <DependentUpon>201806061040120_ToothTableAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
