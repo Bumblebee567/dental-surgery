@@ -14,6 +14,7 @@ namespace DentalSurgery.BLL
         public DbSet<Visit> Visits { get; set; }
         public DbSet<Surgery> Surgeries { get; set; }
         public DbSet<Opinion> Opinions { get; set; }
+        public DbSet<Tooth> Teeth { get; set; }
 
         public DentalBaseContext() : base("DentalBaseConnectionString")
         {

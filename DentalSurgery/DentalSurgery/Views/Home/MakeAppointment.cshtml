@@ -18,7 +18,7 @@
         <div class="form-group">
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "input form-control", type = "text", style = "width: 250px;", placeHolder = "Data wizyty", onfocus = "(this.type='date')", onblur = "(this.type='text')", id = "date" } })
-                @Html.ValidationMessageFor(model => model.Date, "Data niepoprawna", new { @class = "text-danger" })
+               @* @Html.ValidationMessageFor(model => model.Date, "Data niepoprawna", new { @class = "text-danger" })*@
             </div>
         </div>
         <h6>Wizyta może zawierać maksymalnie 3 zabiegi</h6>
@@ -26,13 +26,13 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.FirstSurgeryId, Model.SurgeryChoice, "Wybierz pierwszy zabieg", new { @class = "form-control input", style= "width: 220px" })
+                        @Html.DropDownListFor(model => model.FirstSurgeryId, Model.SurgeryChoice, "Wybierz pierwszy zabieg", new { @class = "form-control input", style= "width: auto" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.FirstSurgeryTooth, new { htmlAttributes = new { @class = "form-control", style = "width: 250px;", placeHolder = "Wybierz ząb do pierwszego zabiegu"} })
+                        @Html.DropDownListFor(model => model.FirstToothId, Model.ToothChoice, "Wybierz ząb", new { @class = "form-control input", style = "width: auto" })
                         @Html.ValidationMessageFor(model => model.FirstSurgeryTooth, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -43,14 +43,13 @@
 
                 <div class="form-group">
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.SecondSurgeryId, Model.SurgeryChoice, "Wybierz drugi zabieg", new { @class = "form-control input", style = "width: 220px" })
-                        @*@Html.ValidationMessageFor(model => model.SecondSurgeryName, "", new { @class = "text-danger left-input" })*@
+                        @Html.DropDownListFor(model => model.SecondSurgeryId, Model.SurgeryChoice, "Wybierz drugi zabieg", new { @class = "form-control input", style = "width: auto" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.SecondSurgeryTooth, new { htmlAttributes = new { @class = "form-control", style = "width: 250px;" } })
+                        @Html.DropDownListFor(model => model.SecondToothId, Model.ToothChoice, "Wybierz ząb", new { @class = "form-control input", style = "width: auto" })
                         @Html.ValidationMessageFor(model => model.SecondSurgeryTooth, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -59,14 +58,13 @@
 
                 <div class="form-group">
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.SecondSurgeryId, Model.SurgeryChoice, "Wybierz trzeci zabieg", new { @class = "form-control input", style = "width: 220px" })
-@*                        @Html.ValidationMessageFor(model => model.ThirdSurgeryName, "", new { @class = "text-danger left-input" })*@
+                        @Html.DropDownListFor(model => model.SecondSurgeryId, Model.SurgeryChoice, "Wybierz trzeci zabieg", new { @class = "form-control input", style = "width: auto" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.ThirdSurgeryTooth, new { htmlAttributes = new { @class = "form-control", placeHolder = "Ząb do trzeciego zabiegu", style = "width: 250px;" } })
+                        @Html.DropDownListFor(model => model.ThirdSurgeryId, Model.ToothChoice, "Wybierz ząb", new { @class = "form-control input", style = "width: auto" })
                         @Html.ValidationMessageFor(model => model.ThirdSurgeryTooth, "", new { @class = "text-danger" })
                     </div>
                 </div>

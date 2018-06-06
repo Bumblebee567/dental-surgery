@@ -125,17 +125,22 @@ namespace DentalSurgery.Controllers
         public ActionResult MakeAppointment()
         {
             var model = new MakeAppointmentViewModel();
-            model.Surgeries.ToList().AddRange(_context.Set<Surgery>());
-            model.Teeth = TeethListGenerator.GenerateListOfTeeth();
+            model.Surgeries.AddRange(_context.Set<Surgery>());
+            model.Teeth.AddRange(_context.Set<Tooth>());
             foreach (var item in model.Surgeries)
             {
-                model.SurgeryChoice.Add(new SelectListItem { Text = item.Name });
+                model.SurgeryChoice.Add(new SelectListItem { Text = item.Name, Value = item.SurgeryId.ToString() });
+            }
+            foreach (var item in model.Teeth)
+            {
+                model.ToothChoice.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
             }
             return View(model);
         }
         [HttpPost]
         public ActionResult MakeAppointment(MakeAppointmentViewModel model)
         {
+            var a = model.FirstToothId;
             return null;
         }
     }

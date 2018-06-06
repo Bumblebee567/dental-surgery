@@ -18,8 +18,12 @@ namespace DentalSurgery.ViewModels
         public string SecondSurgeryTooth { get; set; }
         public Guid ThirdSurgeryId { get; set; }
         public string ThirdSurgeryTooth { get; set; }
+        public Guid FirstToothId { get; set; }
+        public Guid SecondToothId { get; set; }
+        public Guid ThirdToothId { get; set; }
         public List<Surgery> Surgeries { get; set; } = new List<Surgery>();
-        public IEnumerable<string> Teeth { get; set; } = new List<string>();
+        public List<Tooth> Teeth { get; set; } = new List<Tooth>();
         public List<SelectListItem> SurgeryChoice { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> ToothChoice { get; set; } = new List<SelectListItem>();
     }
 }
