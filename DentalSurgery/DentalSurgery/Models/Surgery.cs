@@ -7,7 +7,7 @@ namespace DentalSurgery.Models
 {
     public class Surgery
     {
-        public Guid SurgeryId { get; set; }
+        public Guid SurgeryId { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
         public double Price { get; set; }
         public double EstimatedTime { get; set; }

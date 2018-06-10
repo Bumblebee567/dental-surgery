@@ -64,7 +64,9 @@ namespace DentalSurgery.Controllers
                 {
                     Email = model.Email,
                     PasswordHash = password,
-                    UserName = model.FirstName + model.LastName
+                    UserName = model.FirstName + model.LastName,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
                 };
                 if (_userManager == null)
                 {
@@ -139,7 +141,32 @@ namespace DentalSurgery.Controllers
         [MultipleButton(Name = "action", Argument = "Save")]
         public ActionResult Save(MakeAppointmentViewModel model)
         {
-            return null;
+            var visit = new Visit();
+            visit.Date = model.Date.Value;
+            visit.Patient = _context.Set<AppUser>().Where(x => x.Id == model.PatientID.ToString()).FirstOrDefault();
+            for (int i = 0; i < model.SurgeriesIDs.Count; i++)
+            {
+                var surgeryID = model.SurgeriesIDs[i];
+                var toothID = model.TeethIDs[i];
+                var name = _context.Set<Surgery>().Where(x => x.SurgeryId == surgeryID).FirstOrDefault().Name;
+                var estimatedTime = _context.Set<Surgery>().Where(x => x.SurgeryId == surgeryID).FirstOrDefault().EstimatedTime;
+                var price = _context.Set<Surgery>().Where(x => x.SurgeryId == surgeryID).FirstOrDefault().Price;
+                var tooth = _context.Set<Tooth>().Where(x => x.Id == toothID).FirstOrDefault();
+                if(visit.Surgeries == null)
+                    visit.Surgeries = new List<Surgery>();
+                visit.Surgeries.Add(new Surgery
+                {
+                    Name = name,
+                    EstimatedTime = estimatedTime,
+                    Price = price,
+                    Tooth = tooth
+                });
+            }
+            _context.Visits.Add(visit);
+            _context.Surgeries.AddRange(visit.Surgeries);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

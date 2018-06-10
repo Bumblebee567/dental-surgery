@@ -33,7 +33,6 @@ namespace DentalSurgery.BLL
             modelBuilder.Entity<Opinion>()
                 .HasKey(k => new { k.OpinionId })
                 .ToTable("Opinions");
-
         }
     }
 }

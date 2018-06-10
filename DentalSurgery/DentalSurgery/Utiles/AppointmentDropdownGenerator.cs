@@ -27,7 +27,11 @@ namespace DentalSurgery.Utiles
             }
             foreach (var item in model.Patients)
             {
-                model.PatientChoice.Add(new SelectListItem { Text = item.Email, Value = item.Id.ToString() });
+                if (item.FirstName != null && item.LastName != null)
+                {
+                    var text = $"{item.FirstName} {item.LastName}";
+                    model.PatientChoice.Add(new SelectListItem { Text = text, Value = item.Id.ToString() });
+                }
             }
             return model;
         }
