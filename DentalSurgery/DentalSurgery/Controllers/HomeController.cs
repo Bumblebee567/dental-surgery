@@ -1,6 +1,5 @@
 ﻿using DentalSurgery.BLL;
 using DentalSurgery.Models;
-using DentalSurgery.Utiles;
 using DentalSurgery.ViewModels;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
@@ -117,11 +116,12 @@ namespace DentalSurgery.Controllers
         [HttpGet]
         public ActionResult Opinions()
         {
-            _opinions = _opinionManager.GetAllOpinions();
+            _opinions = _opinionManager.GetAllOpinions().OrderByDescending(x => x.Date);
             return View(_opinions);
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult MakeAppointment()
         {
             var model = new MakeAppointmentViewModel();

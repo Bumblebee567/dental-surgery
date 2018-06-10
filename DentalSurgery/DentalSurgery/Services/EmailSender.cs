@@ -11,16 +11,16 @@ namespace DentalSurgery.Services
     {
         private static readonly string _ownerEmail = "maciekgasiorek9@gmail.com";
         private static readonly string _surgeryEmail = "dentalsurgery429@gmail.com";
+        private static readonly string _fromPassword = "haslomaslo1!";
         public static void SendNewOpinionNotification(string userEmail, string link)
         {
             var fromAddress = new MailAddress(_surgeryEmail);
-            var fromPassword = "haslomaslo1!";
             var toAddress = new MailAddress(_ownerEmail);
 
             string subject = "Napisano nową opinię";
             string body = link;
 
-            Send(fromAddress, toAddress, fromPassword, subject, body);
+            Send(fromAddress, toAddress, _fromPassword, subject, body);
         }
         public static void Send(MailAddress fromAddress, MailAddress toAddress, string fromPassword, string subject, string body)
         {

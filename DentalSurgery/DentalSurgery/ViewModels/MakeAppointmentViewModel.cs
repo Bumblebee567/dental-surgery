@@ -13,14 +13,13 @@ namespace DentalSurgery.ViewModels
         [Required]
         public DateTime? Date { get; set; }
         public Guid FirstSurgeryId { get; set; }
-        public string FirstSurgeryTooth { get; set; }
         public Guid SecondSurgeryId { get; set; }
-        public string SecondSurgeryTooth { get; set; }
         public Guid ThirdSurgeryId { get; set; }
-        public string ThirdSurgeryTooth { get; set; }
         public Guid FirstToothId { get; set; }
         public Guid SecondToothId { get; set; }
         public Guid ThirdToothId { get; set; }
+        public List<Guid> SurgeriesIDs { get; set; } = new List<Guid>();
+        public List<Guid> TeethIDs { get; set; } = new List<Guid>();
         public List<Surgery> Surgeries { get; set; } = new List<Surgery>();
         public List<Tooth> Teeth { get; set; } = new List<Tooth>();
         public List<SelectListItem> SurgeryChoice { get; set; } = new List<SelectListItem>();
