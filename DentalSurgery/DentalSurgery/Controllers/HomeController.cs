@@ -1,5 +1,6 @@
 ﻿using DentalSurgery.BLL;
 using DentalSurgery.Models;
+using DentalSurgery.Services;
 using DentalSurgery.Utiles;
 using DentalSurgery.ViewModels;
 using Microsoft.Ajax.Utilities;
@@ -46,6 +47,8 @@ namespace DentalSurgery.Controllers
 
             return View();
         }
+        [HttpGet]
+        [Authorize]
         public ActionResult Register()
         {
             return View();
@@ -55,19 +58,21 @@ namespace DentalSurgery.Controllers
         {
             if (ModelState.IsValid)
             {
+                var password = DefaultPasswordsGenerator.GenerateDefaultPassword(8);
                 var user = new AppUser()
                 {
-                    UserName = model.UserName,
                     Email = model.Email,
-                    PasswordHash = model.Password
+                    PasswordHash = password,
+                    UserName = model.FirstName + model.LastName
                 };
                 if (_userManager == null)
                 {
                     _userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
                 }
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, password);
                 if (result.Succeeded)
                 {
+                    EmailSender.SendDefaultPassword(user.Email, password);
                     return RedirectToAction("Index", "Home");
                 }
             }

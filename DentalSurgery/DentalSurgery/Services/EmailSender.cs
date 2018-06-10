@@ -12,13 +12,23 @@ namespace DentalSurgery.Services
         private static readonly string _ownerEmail = "maciekgasiorek9@gmail.com";
         private static readonly string _surgeryEmail = "dentalsurgery429@gmail.com";
         private static readonly string _fromPassword = "haslomaslo1!";
-        public static void SendNewOpinionNotification(string userEmail, string link)
+        public static void SendNewOpinionNotification(string userEmail, string emailText)
         {
             var fromAddress = new MailAddress(_surgeryEmail);
             var toAddress = new MailAddress(_ownerEmail);
 
             string subject = "Napisano nową opinię";
-            string body = link;
+            string body = emailText;
+
+            Send(fromAddress, toAddress, _fromPassword, subject, body);
+        }
+        public static void SendDefaultPassword(string userEmail, string password)
+        {
+            var fromAddress = new MailAddress(_surgeryEmail);
+            var toAddress = new MailAddress(_ownerEmail);
+
+            string subject = "Zostałeś zarejestrowany w gabinecie dentystycznym";
+            string body = $"Zostałeś zarejestrowany w gabinecie dentystycznym.\nMożesz zalogować się używając emaila: {userEmail} oraz hasła: {password}";
 
             Send(fromAddress, toAddress, _fromPassword, subject, body);
         }
