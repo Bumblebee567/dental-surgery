@@ -27,10 +27,5 @@ namespace DentalSurgery.Utiles
 
             return isValidName;
         }
-
-        public override bool IsValidName(ControllerContext controllerContext, string actionName, MethodInfo methodInfo)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

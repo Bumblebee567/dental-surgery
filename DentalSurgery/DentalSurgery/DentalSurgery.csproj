@@ -216,6 +216,8 @@
     <Compile Include="Models\Visit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailSender.cs" />
+    <Compile Include="Utiles\AppointmentDropdownGenerator.cs" />
+    <Compile Include="Utiles\MultipleButtonAttribute.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MakeAppointmentViewModel.cs" />
     <Compile Include="ViewModels\OpinionViewModel.cs" />

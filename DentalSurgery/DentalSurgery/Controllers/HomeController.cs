@@ -1,5 +1,6 @@
 ﻿using DentalSurgery.BLL;
 using DentalSurgery.Models;
+using DentalSurgery.Utiles;
 using DentalSurgery.ViewModels;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
@@ -119,29 +120,27 @@ namespace DentalSurgery.Controllers
             _opinions = _opinionManager.GetAllOpinions().OrderByDescending(x => x.Date);
             return View(_opinions);
         }
-
         [HttpGet]
         [Authorize]
-        public ActionResult MakeAppointment()
+        public ActionResult MakeAppointment(int numberOfSurgeries = 0, DateTime? visitDate = null)
         {
-            var model = new MakeAppointmentViewModel();
-            model.Surgeries.AddRange(_context.Set<Surgery>());
-            model.Teeth.AddRange(_context.Set<Tooth>());
-            foreach (var item in model.Surgeries)
-            {
-                model.SurgeryChoice.Add(new SelectListItem { Text = item.Name, Value = item.SurgeryId.ToString() });
-            }
-            foreach (var item in model.Teeth)
-            {
-                model.ToothChoice.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
-            }
+            var model = AppointmentDropdownGenerator.GenerateAppointmentViewModelDropdowns(_context);
+            model.NumberOfSurgeries = numberOfSurgeries;
+            model.Date = visitDate;
             return View(model);
         }
         [HttpPost]
-        public ActionResult MakeAppointment(MakeAppointmentViewModel model)
+        [MultipleButton(Name = "action", Argument = "Save")]
+        public ActionResult Save(MakeAppointmentViewModel model)
         {
-            var a = model.FirstToothId;
             return null;
+        }
+
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "Number")]
+        public ActionResult Number(MakeAppointmentViewModel model)
+        {
+            return RedirectToAction("MakeAppointment", "Home", new { numberOfSurgeries = model.NumberOfSurgeries, visitDate = model.Date});
         }
     }
 }
