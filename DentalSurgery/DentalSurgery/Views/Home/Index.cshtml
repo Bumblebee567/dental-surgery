@@ -22,81 +22,81 @@
         <div class="header">
             <img src="~/Images/Tooth-blue-icon.png" alt="logo" />
             <h1>Gabinet dentystyczny</h1>
+            <h4>
+                Bielsko-Biała, ul. Szeroka 23, 338-653-457
+
+                <a href="mailto:webmaster@example.com" style="color: lightgreen">gabinet@gabinet.com</a>
+            </h4>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="jumbotron-with-url">
-                        <a href="@Url.Action("MakeAppointment", "Home")">
-                            <div class="jumbotron" style="background-image: url('../../Images/card-images/visit.jpg');">
-                                <h1>Zapis na wizytę</h1>
-                                <p>Dokonaj zapisuj na wizytę w naszym gabinecie</p>
+                <div class="row">
+                    @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true && User.IsInRole("Admin") == true)
+                    {
+                        <div class="col-xl-12">
+                            <div class="jumbotron-with-url">
+                                <a href="@Url.Action("MakeAppointment", "Home")">
+                                    <div class="jumbotron" style="background-image: url('../../Images/card-images/visit.jpg');">
+                                        <h1>Zapis na wizytę</h1>
+                                        <p>Dokonaj zapisuj na wizytę w naszym gabinecie</p>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-12">
-                    <div class="jumbotron-with-url">
-                        <a href="@Url.Action("About", "Home")">
-                            <div class="jumbotron" style="background-image: url('../../Images/card-images/about.jpg');">
-                                <h1>O nas</h1>
-                                <p>Zapoznaj się z naszym personelem i historią</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-12">
-                    <div class="jumbotron-with-url">
-                        <a href="@Url.Action("Opinions", "Home")">
-                            <div class="jumbotron" style="background-image: url('../../Images/card-images/schedule.jpg');">
-                                <h1>Opinie pacjentów</h1>
-                                <p>Zapoznaj się z opiniami pacjentów na nasz temat</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-12">
-                    <div class="jumbotron-with-url">
-                        <a href="@Url.Action("Contact", "Home")">
-                            <div class="jumbotron" style="background-image: url('../../Images/card-images/contact.jpg');">
-                                <h1>Kontakt</h1>
-                                <p>Skontakuj się z nami używając formularza</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true && User.IsInRole("Admin") == false)
-                {
+                        </div>
+                    }
                     <div class="col-xl-12">
                         <div class="jumbotron-with-url">
-                            <a href="@Url.Action("VisitHistory", "Home")">
-                                <div class="jumbotron" style="background-image: url('../../Images/card-images/history.jpg');">
-                                    <h1>Historia wizyt</h1>
-                                    <p>Przeglądaj historię swoich wizyt w naszym gabinecie</p>
+                            <a href="@Url.Action("About", "Home")">
+                                <div class="jumbotron" style="background-image: url('../../Images/card-images/about.jpg');">
+                                    <h1>O nas</h1>
+                                    <p>Zapoznaj się z naszym personelem i historią</p>
                                 </div>
                             </a>
                         </div>
                     </div>
-                }
+                    <div class="col-xl-12">
+                        <div class="jumbotron-with-url">
+                            <a href="@Url.Action("Opinions", "Home")">
+                                <div class="jumbotron" style="background-image: url('../../Images/card-images/schedule.jpg');">
+                                    <h1>Opinie pacjentów</h1>
+                                    <p>Zapoznaj się z opiniami pacjentów na nasz temat</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true && User.IsInRole("Admin") == false)
+                    {
+                        <div class="col-xl-12">
+                            <div class="jumbotron-with-url">
+                                <a href="@Url.Action("VisitHistory", "Home")">
+                                    <div class="jumbotron" style="background-image: url('../../Images/card-images/history.jpg');">
+                                        <h1>Historia wizyt</h1>
+                                        <p>Przeglądaj historię swoich wizyt w naszym gabinecie</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
-    </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    <div class="container body-content">
-        <hr />
-        <footer>
-            <center>
-                <p>&copy; @DateTime.Now.Year - Gabinet dentystyczny</p>
-                @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == false)
-                {
-                    <p>
-                        <a href="@Url.Action("Login", "Home")">Logowanie</a>
-                    </p>
-                }
-                <br />
-            </center>
-        </footer>
-    </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        <div class="container body-content">
+            <hr />
+            <footer>
+                <center>
+                    <p>&copy; @DateTime.Now.Year - Gabinet dentystyczny</p>
+                    @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == false)
+                    {
+                        <p>
+                            <a href="@Url.Action("Login", "Home")">Logowanie</a>
+                        </p>
+                    }
+                    <br />
+                </center>
+            </footer>
+        </div>
 </body>
 </html>

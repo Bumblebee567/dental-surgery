@@ -32,8 +32,15 @@ body,html{
     font-family: 'GE Inspira Book';
     font-size: 50px;
     color: azure;
-    padding-bottom: 50px;
     margin-left: 80px;
+}
+
+.header h4 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 15px;
+    color: white;
+    font-family: 'GE Inspira Book';
 }
 
 .header-navbar img {

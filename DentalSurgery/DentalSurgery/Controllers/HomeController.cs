@@ -48,12 +48,13 @@ namespace DentalSurgery.Controllers
             return View();
         }
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -126,7 +127,7 @@ namespace DentalSurgery.Controllers
             return View(_opinions);
         }
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult MakeAppointment(int numberOfSurgeries = 0, DateTime? visitDate = null)
         {
             var model = AppointmentDropdownGenerator.GenerateAppointmentViewModelDropdowns(_context);
