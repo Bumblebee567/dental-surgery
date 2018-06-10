@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DentalSurgery.Models.Visit>
+
+<div class="opinion-header">
+    <h2>Historia wizyt</h2>
+</div>
+<hr />
+
+@if (Model.Any(x => x.Date > DateTime.Now))
+{
+    <h3 style="font-family: 'GE Inspira Pitch'; padding-left: 15px; font-size: 26px">Nadchodzące wizyty</h3>
+    foreach (var visit in Model.Where(x => x.Date > DateTime.Now))
+    {
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="jumbotron jumbotron-opinion">
+                    <h5>@visit.Date.ToShortDateString()</h5>
+                    @foreach (var surgery in visit.Surgeries)
+                    {
+                        <h6>@surgery.Name</h6>
+
+                        <label>
+                            @surgery.Tooth
+                        </label>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@{IEnumerable<DentalSurgery.Models.Visit> previousVisits = Model.Where(x => x.Date < DateTime.Now);}
+@if (previousVisits.Any())
+{
+    <h3 style="font-family: 'GE Inspira Pitch'; padding-left: 15px; font-size: 26px">Poprzednie wizyty</h3>
+    foreach (var visit in previousVisits)
+    {
+        <div class="row"  style="padding-left: 15px">
+            <div class="col-xl-12">
+                <div class="jumbotron jumbotron-opinion">
+                    <h5>@visit.Date.ToShortDateString()</h5>
+                    @foreach (var surgery in visit.Surgeries)
+                    {
+                    <p>
+                        @surgery.Name
+                    </p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+

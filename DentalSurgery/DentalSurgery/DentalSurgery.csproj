@@ -271,6 +271,7 @@
     <Content Include="Views\Home\WriteOpinion.cshtml" />
     <Content Include="Views\Home\Opinions.cshtml" />
     <Content Include="Views\Home\MakeAppointment.cshtml" />
+    <Content Include="Views\Home\VisitsHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

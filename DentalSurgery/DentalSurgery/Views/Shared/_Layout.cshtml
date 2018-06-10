@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @using Microsoft.AspNet.Identity;
 </head>
 <body>
     <nav class="navbar navbar-default navbar-expand-xl navbar-dark bg-dark">
@@ -41,7 +42,7 @@
                     if (System.Web.HttpContext.Current.User.IsInRole("Admin") == false)
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Logout", "Home")">Historia wizyt</a>
+                            <a class="nav-link" href="@Url.Action("VisitsHistory", "Home", new { userId  = User.Identity.GetUserId().ToString()})">Historia wizyt</a>
                         </li>
                     }
                     <li class="nav-item">

@@ -12,6 +12,7 @@
     <title>Index</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @using Microsoft.AspNet.Identity;
 </head>
 <body>
     <div class="container">
@@ -69,7 +70,7 @@
                     {
                         <div class="col-xl-12">
                             <div class="jumbotron-with-url">
-                                <a href="@Url.Action("VisitHistory", "Home")">
+                                <a href="@Url.Action("VisitsHistory", "Home", new { userId  = User.Identity.GetUserId().ToString()})">
                                     <div class="jumbotron" style="background-image: url('../../Images/card-images/history.jpg');">
                                         <h1>Historia wizyt</h1>
                                         <p>Przeglądaj historię swoich wizyt w naszym gabinecie</p>

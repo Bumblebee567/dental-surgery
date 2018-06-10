@@ -175,5 +175,11 @@ namespace DentalSurgery.Controllers
         {
             return RedirectToAction("MakeAppointment", "Home", new { numberOfSurgeries = model.NumberOfSurgeries, visitDate = model.Date});
         }
+        [Authorize]
+        public ActionResult VisitsHistory(Guid userId)
+        {
+            var userVisits = _context.Set<Visit>().Where(x => x.Patient.Id == userId.ToString());
+            return View(userVisits);
+        }
     }
 }

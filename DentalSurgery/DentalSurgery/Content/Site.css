@@ -139,6 +139,11 @@ h2 {
     font-size: 17px;
 }
 
+.jumbotron-opinion p{
+    font-size: 17px;
+    margin-bottom: 2px;
+    color: black;
+}
 
 .jumbotron-with-url:hover{
     opacity: 0.7;
