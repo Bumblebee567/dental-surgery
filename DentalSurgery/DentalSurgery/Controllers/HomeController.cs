@@ -88,17 +88,23 @@ namespace DentalSurgery.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            _userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            var authManager = HttpContext.GetOwinContext().Authentication;
-
-            AppUser user = _userManager.FindByEmail(model.Email);
-            if (user != null)
+            if (ModelState.IsValid)
             {
-                var ident = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                authManager.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
-                return RedirectToAction("Index", "Home");
+                _userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                var authManager = HttpContext.GetOwinContext().Authentication;
+
+                var userName = _userManager.FindByEmail(model.Email).UserName;
+                var user = _userManager.Find(userName, model.Password);
+                if (user != null)
+                {
+                    var ident = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    authManager.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
+                    return RedirectToAction("Index", "Home");
+                }
+                return View();
             }
-            return View();
+            ModelState.AddModelError("", "Niepoprawne dane");
+            return View(model);
         }
         [Authorize]
         public ActionResult SetNewPassword()
@@ -109,10 +115,13 @@ namespace DentalSurgery.Controllers
         [Authorize]
         public ActionResult SetNewPassword(RegisterViewModel model)
         {
-            var userId = User.Identity.GetUserId();
-            var user = _context.Set<AppUser>().Where(x => x.Id == userId).FirstOrDefault();
-            user.PasswordHash = model.Password;
-            _context.SaveChanges();
+            _userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            var authManager = HttpContext.GetOwinContext().Authentication;
+
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            _userManager.RemovePassword(user.Id);
+            _userManager.AddPassword(user.Id, model.Password);
+            
             return RedirectToAction("Index", "Home");
         }
         [Authorize]
