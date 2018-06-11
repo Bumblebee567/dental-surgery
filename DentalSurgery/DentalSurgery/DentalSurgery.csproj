@@ -272,6 +272,7 @@
     <Content Include="Views\Home\Opinions.cshtml" />
     <Content Include="Views\Home\MakeAppointment.cshtml" />
     <Content Include="Views\Home\VisitsHistory.cshtml" />
+    <Content Include="Views\Home\SetNewPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

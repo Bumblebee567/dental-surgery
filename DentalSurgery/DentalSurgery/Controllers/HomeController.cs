@@ -101,6 +101,21 @@ namespace DentalSurgery.Controllers
             return View();
         }
         [Authorize]
+        public ActionResult SetNewPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult SetNewPassword(RegisterViewModel model)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = _context.Set<AppUser>().Where(x => x.Id == userId).FirstOrDefault();
+            user.PasswordHash = model.Password;
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+        [Authorize]
         public ActionResult Logout()
         {
             var authManager = HttpContext.GetOwinContext().Authentication;

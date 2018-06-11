@@ -12,6 +12,8 @@ namespace DentalSurgery.ViewModels
         public string Email { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [DataType(DataType.Password)]
+        public string OldPassword { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
