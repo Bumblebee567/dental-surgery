@@ -9,12 +9,24 @@ using System.Web.Mvc;
 
 namespace DentalSurgery.Utiles
 {
-    public class AppointmentDropdownGenerator
+    public static class AppointmentDropdownGenerator
     {
+        private static IEnumerable<TSource> DistinctBy<TSource, TKey> (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        {
+            HashSet<TKey> seenKeys = new HashSet<TKey>();
+            foreach (TSource element in source)
+            {
+                if (seenKeys.Add(keySelector(element)))
+                {
+                    yield return element;
+                }
+            }
+        }
         public static MakeAppointmentViewModel GenerateAppointmentViewModelDropdowns(DentalBaseContext context)
         {
             var model = new MakeAppointmentViewModel();
-            model.Surgeries.AddRange(context.Set<Surgery>());
+            var surgeries = context.Surgeries.DistinctBy(x => x.Name);
+            model.Surgeries.AddRange(surgeries);
             model.Teeth.AddRange(context.Set<Tooth>());
             model.Patients.AddRange(context.Set<AppUser>());
             foreach (var item in model.Surgeries)

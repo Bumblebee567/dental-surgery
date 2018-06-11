@@ -142,7 +142,8 @@ namespace DentalSurgery.Controllers
             var userId = User.Identity.GetUserId();
             var author = _context.Users.Where(x => x.Id == userId).FirstOrDefault();
             opinion.Author = author;
-            _opinionManager.AddOpinion(opinion);
+            if(opinion.Content != String.Empty)
+                _opinionManager.AddOpinion(opinion);
             return RedirectToAction("Opinions", "Home");
 
         }
@@ -202,8 +203,22 @@ namespace DentalSurgery.Controllers
         [Authorize]
         public ActionResult VisitsHistory(Guid userId)
         {
+            double counter = 0;
             var userVisits = _context.Set<Visit>().Where(x => x.Patient.Id == userId.ToString());
-            return View(userVisits);
+            var model = new List<VisitsHistoryViewModel>();
+            foreach (var visit in userVisits)
+            {
+                var newVisit = new VisitsHistoryViewModel();
+                newVisit.VisitDate = visit.Date;
+                newVisit.Surgeries = visit.Surgeries.ToList();
+                visit.Surgeries.ToList().ForEach(x => counter += x.Price);
+                newVisit.TotalCost = counter;
+                counter = 0;
+                visit.Surgeries.ToList().ForEach(x => counter += x.EstimatedTime);
+                newVisit.TotalTime = counter;
+                model.Add(newVisit);
+            }
+            return View(model as IEnumerable<VisitsHistoryViewModel>);
         }
     }
 }
