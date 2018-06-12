@@ -13,12 +13,12 @@
     {
         <div class="row" style="padding-left: 15px">
             <div class="col-xl-12">
-                <div class="jumbotron jumbotron-opinion">
+                <div class="jumbotron jumbotron-opinion" style="background-color: lightyellow">
                     <h5>@visit.VisitDate.ToShortDateString()</h5>
                     @foreach (var surgery in visit.Surgeries)
                     {
                         <p>
-                            @surgery.Name
+                            @surgery.Name (@surgery.Tooth.Name)
                         </p>
                     }
                     <p>
@@ -41,12 +41,12 @@
     {
         <div class="row" style="padding-left: 15px">
             <div class="col-xl-12">
-                <div class="jumbotron jumbotron-opinion">
+                <div class="jumbotron jumbotron-opinion" style="background-color: cyan">
                     <h5>@visit.VisitDate.ToShortDateString()</h5>
                     @foreach (var surgery in visit.Surgeries)
                     {
                         <p>
-                            @surgery.Name
+                            @surgery.Name (@surgery.Tooth.Name)
                         </p>
                     }
                     <p>
