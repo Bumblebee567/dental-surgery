@@ -247,8 +247,9 @@ namespace DentalSurgery.Controllers
             };
 
             var a = System.AppDomain.CurrentDomain.BaseDirectory;
+            var fileName = Guid.NewGuid();
 
-            var fileStream = new FileStream($"{a}/Images/plik.pdf", FileMode.Create);
+            var fileStream = new FileStream($"{a}/Files/{fileName}.pdf", FileMode.Create);
             pdf.Save(fileStream);
             fileStream.Close();
             return RedirectToAction("Index", "Home");

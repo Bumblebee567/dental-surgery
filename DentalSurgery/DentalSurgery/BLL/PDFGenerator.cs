@@ -56,7 +56,7 @@ namespace DentalSurgery.BLL
         {
             var table = new Table
             {
-                ColumnWidths = "26 257 78 78 78",
+                ColumnWidths = "60 200 78 78 78",
                 Border = new BorderInfo(BorderSide.Box, 1f, _textColor),
                 DefaultCellBorder = new BorderInfo(BorderSide.Box, 0.5f, _textColor),
                 DefaultCellPadding = new MarginInfo(4.5, 4.5, 4.5, 4.5),
@@ -71,12 +71,12 @@ namespace DentalSurgery.BLL
             };
 
             var headerRow = table.Rows.Add();
-            var cell = headerRow.Cells.Add("#");
+            var cell = headerRow.Cells.Add("Data");
             cell.Alignment = HorizontalAlignment.Center;
-            headerRow.Cells.Add("Item");
-            headerRow.Cells.Add("Price");
-            headerRow.Cells.Add("Quantity");
-            headerRow.Cells.Add("Sum");
+            headerRow.Cells.Add("Pacjent");
+            headerRow.Cells.Add("Zabieg");
+            headerRow.Cells.Add("Cena");
+            headerRow.Cells.Add("Szacowany czas");
             foreach (Cell headerRowCell in headerRow.Cells)
             {
                 headerRowCell.BackgroundColor = _textColor;
@@ -86,8 +86,9 @@ namespace DentalSurgery.BLL
             foreach (var surgery in Surgeries)
             {
                 var row = table.Rows.Add();
-                cell = row.Cells.Add(surgery.SurgeryId.ToString());
+                cell = row.Cells.Add(surgery.Visits.First().Date.ToShortDateString());
                 cell.Alignment = HorizontalAlignment.Center;
+                row.Cells.Add(surgery.Visits.First().Patient.FirstName + surgery.Visits.First().Patient.FirstName);
                 row.Cells.Add(surgery.Name);
                 cell = row.Cells.Add(surgery.Price.ToString("C2"));
                 cell.Alignment = HorizontalAlignment.Right;
