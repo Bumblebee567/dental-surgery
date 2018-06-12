@@ -153,8 +153,9 @@ namespace DentalSurgery.Controllers
             opinion.Author = author;
             if (opinion.Content != null)
                 _opinionManager.AddOpinion(opinion);
+            if (User.IsInRole("Admin") == false)
+                EmailSender.SendNewOpinionNotification(User.Identity.Name, opinion.Content);
             return RedirectToAction("Opinions", "Home");
-
         }
         [HttpGet]
         public ActionResult Opinions()
