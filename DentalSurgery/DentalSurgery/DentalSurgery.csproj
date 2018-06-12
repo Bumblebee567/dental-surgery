@@ -182,6 +182,7 @@
     <Compile Include="BLL\AppUserManager.cs" />
     <Compile Include="BLL\DentalBaseContext.cs" />
     <Compile Include="BLL\OpinionManager.cs" />
+    <Compile Include="BLL\PDFGenerator.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

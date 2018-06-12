@@ -11,7 +11,9 @@ using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -232,6 +234,24 @@ namespace DentalSurgery.Controllers
                 surgeries.Add(new SurgeryListViewModel(item.Name));
             }
             return View(surgeries);
+        }
+        [Authorize(Roles = "Admin")]
+        public ActionResult GenerateVisitSchedule()
+        {
+            var visits = _context.Visits.ToList();
+            var pdf = new PDFGenerator
+            {
+                ForegroundColor = "#0000CC",
+                BackgroundColor = "#FFFFFF",
+                Surgeries = visits.First().Surgeries.ToList()
+            };
+
+            var a = System.AppDomain.CurrentDomain.BaseDirectory;
+
+            var fileStream = new FileStream($"{a}/Images/plik.pdf", FileMode.Create);
+            pdf.Save(fileStream);
+            fileStream.Close();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

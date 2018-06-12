@@ -48,8 +48,55 @@ namespace DentalSurgery.BLL
         }
         public void Save(Stream stream)
         {
+            GridSection();
             _pdfDocument.Save(stream);
         }
+
+        private void GridSection()
+        {
+            var table = new Table
+            {
+                ColumnWidths = "26 257 78 78 78",
+                Border = new BorderInfo(BorderSide.Box, 1f, _textColor),
+                DefaultCellBorder = new BorderInfo(BorderSide.Box, 0.5f, _textColor),
+                DefaultCellPadding = new MarginInfo(4.5, 4.5, 4.5, 4.5),
+                Margin =
+                {
+                    Bottom = 10
+                },
+                DefaultCellTextState =
+                {
+                    Font = _timeNewRomanFont
+                }
+            };
+
+            var headerRow = table.Rows.Add();
+            var cell = headerRow.Cells.Add("#");
+            cell.Alignment = HorizontalAlignment.Center;
+            headerRow.Cells.Add("Item");
+            headerRow.Cells.Add("Price");
+            headerRow.Cells.Add("Quantity");
+            headerRow.Cells.Add("Sum");
+            foreach (Cell headerRowCell in headerRow.Cells)
+            {
+                headerRowCell.BackgroundColor = _textColor;
+                headerRowCell.DefaultCellTextState.ForegroundColor = _backColor;
+            }
+
+            foreach (var surgery in Surgeries)
+            {
+                var row = table.Rows.Add();
+                cell = row.Cells.Add(surgery.SurgeryId.ToString());
+                cell.Alignment = HorizontalAlignment.Center;
+                row.Cells.Add(surgery.Name);
+                cell = row.Cells.Add(surgery.Price.ToString("C2"));
+                cell.Alignment = HorizontalAlignment.Right;
+                cell = row.Cells.Add(surgery.EstimatedTime.ToString());
+                cell.Alignment = HorizontalAlignment.Right;
+            }
+            _pdfPage.Paragraphs.Add(table);
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
