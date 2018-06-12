@@ -83,8 +83,10 @@ namespace DentalSurgery.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
+            ModelState.AddModelError("", "Niepoprawne dane");
             return View(model);
         }
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
