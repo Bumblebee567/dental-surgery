@@ -13,6 +13,6 @@ namespace DentalSurgery.Models
         public double EstimatedTime { get; set; }
         public bool HasTooth { get; set; }
         public virtual ICollection<Visit> Visits { get; set; }
-        public Tooth Tooth { get; set; }
+        public virtual Tooth Tooth { get; set; }
     }
 }

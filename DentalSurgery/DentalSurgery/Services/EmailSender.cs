@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Web;
 
 namespace DentalSurgery.Services
@@ -32,6 +33,16 @@ namespace DentalSurgery.Services
 
             Send(fromAddress, toAddress, _fromPassword, subject, body);
         }
+        public static void SendVisitsSchedule(string filePath)
+        {
+            var fromAddress = new MailAddress(_surgeryEmail);
+            var toAddress = new MailAddress(_ownerEmail);
+            string subject = "Harmonogram wizyt";
+            string body = "Wygenerowano harmonogram wizyt";
+            var attachment = new Attachment(filePath);
+
+            SendWithAttachment(fromAddress, toAddress, _fromPassword, subject, body, attachment, filePath);
+        }
         public static void Send(MailAddress fromAddress, MailAddress toAddress, string fromPassword, string subject, string body)
         {
             System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
@@ -49,6 +60,26 @@ namespace DentalSurgery.Services
                 Subject = subject,
                 Body = body
             };
+            smtp.Send(message);
+        }
+        public static void SendWithAttachment(MailAddress fromAddress, MailAddress toAddress, string fromPassword, string subject, string body, Attachment attachment, string filePath)
+        {
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+
+            };
+            var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            };
+            message.Attachments.Add(attachment);
             smtp.Send(message);
         }
     }

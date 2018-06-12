@@ -17,8 +17,8 @@ namespace DentalSurgery.BLL
         private readonly TextBuilder _builder;
         private readonly Page _pdfPage;
         private readonly Document _pdfDocument;
-        private readonly Rectangle _logoPlaceHolder;
         private bool disposedValue = false;
+        private int counter = 0;
 
         public string ForegroundColor
         {
@@ -34,6 +34,7 @@ namespace DentalSurgery.BLL
         public string Number;
         public List<string> Patient;
         public List<Surgery> Surgeries;
+        public List<Visit> Visits;
         public string Footer;
         public PDFGenerator()
         {
@@ -56,7 +57,7 @@ namespace DentalSurgery.BLL
         {
             var table = new Table
             {
-                ColumnWidths = "60 200 78 78 78",
+                ColumnWidths = "60 150 78 78 78",
                 Border = new BorderInfo(BorderSide.Box, 1f, _textColor),
                 DefaultCellBorder = new BorderInfo(BorderSide.Box, 0.5f, _textColor),
                 DefaultCellPadding = new MarginInfo(4.5, 4.5, 4.5, 4.5),
@@ -75,6 +76,7 @@ namespace DentalSurgery.BLL
             cell.Alignment = HorizontalAlignment.Center;
             headerRow.Cells.Add("Pacjent");
             headerRow.Cells.Add("Zabieg");
+            headerRow.Cells.Add("Ząb");
             headerRow.Cells.Add("Cena");
             headerRow.Cells.Add("Szacowany czas");
             foreach (Cell headerRowCell in headerRow.Cells)
@@ -83,17 +85,45 @@ namespace DentalSurgery.BLL
                 headerRowCell.DefaultCellTextState.ForegroundColor = _backColor;
             }
 
-            foreach (var surgery in Surgeries)
+            foreach (var visit in Visits)
             {
                 var row = table.Rows.Add();
-                cell = row.Cells.Add(surgery.Visits.First().Date.ToShortDateString());
+                cell = row.Cells.Add(visit.Date.ToShortDateString());
                 cell.Alignment = HorizontalAlignment.Center;
-                row.Cells.Add(surgery.Visits.First().Patient.FirstName + surgery.Visits.First().Patient.FirstName);
-                row.Cells.Add(surgery.Name);
-                cell = row.Cells.Add(surgery.Price.ToString("C2"));
-                cell.Alignment = HorizontalAlignment.Right;
-                cell = row.Cells.Add(surgery.EstimatedTime.ToString());
-                cell.Alignment = HorizontalAlignment.Right;
+                row.Cells.Add(visit.Patient.FirstName + " " + visit.Patient.LastName);
+
+                foreach (var surgery in visit.Surgeries)
+                {
+                    if (counter > 0)
+                    {
+                        var rowLower = table.Rows.Add();
+                        cell = rowLower.Cells.Add("");
+                        rowLower.Cells.Add("");
+                        rowLower.Cells.Add(surgery.Name);
+                        if(surgery.Tooth != null)
+                            rowLower.Cells.Add(surgery.Tooth.Name);
+                        else
+                            rowLower.Cells.Add("-");
+                        cell = rowLower.Cells.Add(surgery.Price.ToString("C2"));
+                        cell.Alignment = HorizontalAlignment.Right;
+                        cell = rowLower.Cells.Add(surgery.EstimatedTime.ToString());
+                        cell.Alignment = HorizontalAlignment.Right;
+                    }
+                    else
+                    {
+                        row.Cells.Add(surgery.Name);
+                        if (surgery.Tooth != null)
+                            row.Cells.Add(surgery.Tooth.Name);
+                        else
+                            row.Cells.Add("-");
+                        cell = row.Cells.Add(surgery.Price.ToString("C2"));
+                        cell.Alignment = HorizontalAlignment.Right;
+                        cell = row.Cells.Add(surgery.EstimatedTime.ToString());
+                        cell.Alignment = HorizontalAlignment.Right;
+                    }
+                    counter++;
+                }
+                counter = 0;
             }
             _pdfPage.Paragraphs.Add(table);
         }

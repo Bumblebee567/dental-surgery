@@ -14,6 +14,8 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -192,8 +194,8 @@ namespace DentalSurgery.Controllers
                     Tooth = tooth
                 });
             }
-            _context.Visits.Add(visit);
             _context.Surgeries.AddRange(visit.Surgeries);
+            _context.Visits.Add(visit);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
@@ -238,20 +240,25 @@ namespace DentalSurgery.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult GenerateVisitSchedule()
         {
-            var visits = _context.Visits.ToList();
+            var visits = _context.Visits.OrderBy(x => x.Date).ToList();
             var pdf = new PDFGenerator
             {
                 ForegroundColor = "#0000CC",
                 BackgroundColor = "#FFFFFF",
-                Surgeries = visits.First().Surgeries.ToList()
+                Surgeries = visits.First().Surgeries.ToList(),
+                Visits = visits
             };
 
             var a = System.AppDomain.CurrentDomain.BaseDirectory;
-            var fileName = Guid.NewGuid();
+            var sb = new StringBuilder();
+            sb.Append(DateTime.Now);
+            sb.Append("-Harmonogram");
+            var fileName = sb.ToString().Replace(" ", "_").Replace(".", "").Replace(":", "");
 
             var fileStream = new FileStream($"{a}/Files/{fileName}.pdf", FileMode.Create);
             pdf.Save(fileStream);
             fileStream.Close();
+            EmailSender.SendVisitsSchedule($"{a}/Files/{fileName}.pdf");
             return RedirectToAction("Index", "Home");
         }
     }
