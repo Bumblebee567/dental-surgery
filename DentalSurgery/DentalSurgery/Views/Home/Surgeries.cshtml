@@ -1,0 +1,12 @@
+﻿@model IEnumerable<DentalSurgery.ViewModels.SurgeryListViewModel>
+
+<div class="opinion-header">
+    <h2>Nasze usługi</h2>
+</div>
+<hr />
+
+@foreach (var surgery in Model)
+{
+    <h6 style="padding-left: 15px">@surgery.name</h6>
+}
+

@@ -223,6 +223,7 @@
     <Compile Include="ViewModels\MakeAppointmentViewModel.cs" />
     <Compile Include="ViewModels\OpinionViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\SurgeryListViewModel.cs" />
     <Compile Include="ViewModels\VisitsHistoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +275,7 @@
     <Content Include="Views\Home\MakeAppointment.cshtml" />
     <Content Include="Views\Home\VisitsHistory.cshtml" />
     <Content Include="Views\Home\SetNewPassword.cshtml" />
+    <Content Include="Views\Home\Surgeries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

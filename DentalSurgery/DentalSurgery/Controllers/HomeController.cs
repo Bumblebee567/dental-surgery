@@ -115,13 +115,16 @@ namespace DentalSurgery.Controllers
         [Authorize]
         public ActionResult SetNewPassword(RegisterViewModel model)
         {
-            _userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            var authManager = HttpContext.GetOwinContext().Authentication;
+            if (ModelState.IsValid)
+            {
+                _userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                var authManager = HttpContext.GetOwinContext().Authentication;
 
-            var user = _userManager.FindById(User.Identity.GetUserId());
-            _userManager.RemovePassword(user.Id);
-            _userManager.AddPassword(user.Id, model.Password);
-            
+                var user = _userManager.FindById(User.Identity.GetUserId());
+                _userManager.RemovePassword(user.Id);
+                _userManager.AddPassword(user.Id, model.Password);
+            }
+
             return RedirectToAction("Index", "Home");
         }
         [Authorize]
@@ -142,7 +145,7 @@ namespace DentalSurgery.Controllers
             var userId = User.Identity.GetUserId();
             var author = _context.Users.Where(x => x.Id == userId).FirstOrDefault();
             opinion.Author = author;
-            if(opinion.Content != String.Empty)
+            if (opinion.Content != null)
                 _opinionManager.AddOpinion(opinion);
             return RedirectToAction("Opinions", "Home");
 
@@ -177,7 +180,7 @@ namespace DentalSurgery.Controllers
                 var estimatedTime = _context.Set<Surgery>().Where(x => x.SurgeryId == surgeryID).FirstOrDefault().EstimatedTime;
                 var price = _context.Set<Surgery>().Where(x => x.SurgeryId == surgeryID).FirstOrDefault().Price;
                 var tooth = _context.Set<Tooth>().Where(x => x.Id == toothID).FirstOrDefault();
-                if(visit.Surgeries == null)
+                if (visit.Surgeries == null)
                     visit.Surgeries = new List<Surgery>();
                 visit.Surgeries.Add(new Surgery
                 {
@@ -198,7 +201,7 @@ namespace DentalSurgery.Controllers
         [MultipleButton(Name = "action", Argument = "Number")]
         public ActionResult Number(MakeAppointmentViewModel model)
         {
-            return RedirectToAction("MakeAppointment", "Home", new { numberOfSurgeries = model.NumberOfSurgeries, visitDate = model.Date});
+            return RedirectToAction("MakeAppointment", "Home", new { numberOfSurgeries = model.NumberOfSurgeries, visitDate = model.Date });
         }
         [Authorize]
         public ActionResult VisitsHistory(Guid userId)
@@ -219,6 +222,16 @@ namespace DentalSurgery.Controllers
                 model.Add(newVisit);
             }
             return View(model as IEnumerable<VisitsHistoryViewModel>);
+        }
+        public ActionResult Surgeries()
+        {
+            List<SurgeryListViewModel> surgeries = new List<SurgeryListViewModel>();
+            var surgeriesDatabase = _context.Surgeries.DistinctBy(x => x.Name);
+            foreach (var item in surgeriesDatabase)
+            {
+                surgeries.Add(new SurgeryListViewModel(item.Name));
+            }
+            return View(surgeries);
         }
     }
 }

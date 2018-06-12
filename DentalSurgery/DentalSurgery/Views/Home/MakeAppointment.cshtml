@@ -56,53 +56,6 @@
                         </div>
                     </div>
                 }
-
-                @*<div class="row">
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.FirstSurgeryId, Model.SurgeryChoice, "Wybierz pierwszy zabieg", new { @class = "form-control input", style = "width: auto" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.FirstToothId, Model.ToothChoice, "Wybierz ząb", new { @class = "form-control input", style = "width: auto" })
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <button onclick="myFunction()">Try it</button>
-
-
-                    <div class="row">
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.SecondSurgeryId, Model.SurgeryChoice, "Wybierz drugi zabieg", new { @class = "form-control input", style = "width: auto" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.SecondToothId, Model.ToothChoice, "Wybierz ząb", new { @class = "form-control input", style = "width: auto" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.SecondSurgeryId, Model.SurgeryChoice, "Wybierz trzeci zabieg", new { @class = "form-control input", style = "width: auto" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.ThirdSurgeryId, Model.ToothChoice, "Wybierz ząb", new { @class = "form-control input", style = "width: auto" })
-                            </div>
-                        </div>
-                    </div>*@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -112,25 +65,3 @@
         }
     </div>
 }
-<script>
-    function myFunction() {
-        var row = document.createElement("div");
-        row.className = "row";
-        var formgroup = document.createElement("div");
-        formgroup.className = "form-group";
-        var col = document.createElement("div");
-        col.className = "col-md-10";
-        var x = document.createTextNode("Html.DropDownListFor(model => model.ThirdSurgeryId, Model.ToothChoice, \"Wybierz ząb\", new { class = \"form-control input\", style = \"width: auto\" })");
-        col.appendChild(x);
-        formgroup.appendChild(col);
-        row.appendChild(formgroup);
-        document.getElementById("myDIV").appendChild(row);
-
-
-
-        //var para = document.createElement("P");
-        //var t = document.createTextNode("This is a paragraph.");
-        //para.appendChild(t);
-
-    }
-</script>
