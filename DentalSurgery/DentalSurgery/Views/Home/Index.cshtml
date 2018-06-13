@@ -44,6 +44,16 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="col-xl-12">
+                            <div class="jumbotron-with-url">
+                                <a href="@Url.Action("Register", "Home")">
+                                    <div class="jumbotron" style="background-image: url('../../Images/card-images/history.jpg');">
+                                        <h1>Dodaj pacjenta</h1>
+                                        <p>Dodaj nowego pacjenta do bazy danych</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     }
                     else if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true && User.IsInRole("Admin") == false)
                     {

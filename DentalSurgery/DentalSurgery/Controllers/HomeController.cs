@@ -79,7 +79,8 @@ namespace DentalSurgery.Controllers
                 var result = await _userManager.CreateAsync(user, password);
                 if (result.Succeeded)
                 {
-                    EmailSender.SendDefaultPassword(user.Email, password);
+                    if (model.Email != string.Empty)
+                        EmailSender.SendDefaultPassword(user.Email, password);
                     return RedirectToAction("Index", "Home");
                 }
             }
